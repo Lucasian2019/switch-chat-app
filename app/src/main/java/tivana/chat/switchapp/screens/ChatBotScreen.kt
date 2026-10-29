@@ -99,21 +99,20 @@ fun ChatBotScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Input row (horizontal)
-        Row(
+        // Input section (vertical)
+        Column(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Box(modifier = Modifier.weight(1f)) {
-                SwitchTextField(
-                    value = inputMessage,
-                    onValueChange = { inputMessage = it },
-                    label = "Ask Tivana AI..."
-                )
-            }
+            SwitchTextField(
+                value = inputMessage,
+                onValueChange = { inputMessage = it },
+                label = "Ask Tivana AI...",
+                singleLine = false,
+                maxLines = 3
+            )
             SwitchButton(
-                text = "Send",
+                text = "Send Message",
                 onClick = {
                     if (inputMessage.isNotBlank()) {
                         val userMsg = BotMessage("u_${System.currentTimeMillis()}", inputMessage, true, "Just now", "Tivana AI")
